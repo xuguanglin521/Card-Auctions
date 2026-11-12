@@ -1,0 +1,33 @@
+name: Daily auction list
+
+on:
+  schedule:
+    - cron: "23 11 * * *"   # every day ~6:23am Eastern (11:23 UTC)
+  workflow_dispatch:         # adds a "Run workflow" button for manual runs
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch auctions
+        env:
+          EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
+          EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+        run: python fetch_auctions.py
+
+      - name: Save results to repo
+        run: |
+          git config user.name "auction-bot"
+          git config user.email "auction-bot@users.noreply.github.com"
+          git add auctions.json auctions.md
+          git commit -m "Auction list $(date -u +%F)" || echo "No changes"
+          git push
