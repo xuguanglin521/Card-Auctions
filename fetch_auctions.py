@@ -1,7 +1,8 @@
 """
 Daily eBay auction fetcher for sports cards.
 
-Finds auctions ending soon that match the watchlist and writes:
+Finds auctions ending soon, plus newly listed Best Offer (Buy It Now + offers)
+listings, that match the watchlist, and writes:
   - auctions.json  (full data, for the analyst step)
   - auctions.md    (readable list)
 
@@ -35,9 +36,12 @@ SEARCH_TERMS = [
     "Cooper Flagg",
 ]
 
-MIN_PRICE = 50          # current bid must be at least this (USD)
-MAX_PRICE = None        # e.g. 500 to cap it; None = no cap
-HOURS_AHEAD = 24        # only auctions ending within this many hours
+MIN_PRICE = 50          # price / current bid must be at least this (USD)
+MAX_PRICE = 1500        # and at most this; None = no cap
+HOURS_AHEAD = 24        # auctions: only those ending within this many hours
+
+INCLUDE_BEST_OFFER = True   # also fetch Buy It Now listings that accept offers
+NEW_LISTING_HOURS = 24      # best offer: only listings created in the last N hours
 MAX_PER_TERM = 600      # safety cap on results per search term
 ITEM_COUNTRY = "US"     # only items physically located in this country
 
@@ -93,28 +97,32 @@ def get_token(client_id: str, client_secret: str) -> str:
         return json.load(r)["access_token"]
 
 
-def build_filter(now: datetime) -> str:
-    end = now + timedelta(hours=HOURS_AHEAD)
+def build_filter(now: datetime, kind: str) -> str:
     fmt = "%Y-%m-%dT%H:%M:%SZ"
     price = f"[{MIN_PRICE}..{MAX_PRICE}]" if MAX_PRICE else f"[{MIN_PRICE}]"
     parts = [
-        "buyingOptions:{AUCTION}",
         f"price:{price}",
         "priceCurrency:USD",
         f"itemLocationCountry:{ITEM_COUNTRY}",
-        f"itemEndDate:[{now.strftime(fmt)}..{end.strftime(fmt)}]",
     ]
+    if kind == "auction":
+        end = now + timedelta(hours=HOURS_AHEAD)
+        parts.append("buyingOptions:{AUCTION}")
+        parts.append(f"itemEndDate:[{now.strftime(fmt)}..{end.strftime(fmt)}]")
+    else:
+        parts.append("buyingOptions:{BEST_OFFER}")
     return ",".join(parts)
 
 
-def search(token: str, term: str, flt: str) -> list:
+def search(token: str, term: str, flt: str, sort: str = "endingSoonest",
+           stop_before: str | None = None) -> list:
     items, offset, limit = [], 0, 200
     while offset < MAX_PER_TERM:
         params = urllib.parse.urlencode({
             "q": term,
             "category_ids": CATEGORY_IDS,
             "filter": flt,
-            "sort": "endingSoonest",
+            "sort": sort,
             "limit": limit,
             "offset": offset,
         })
@@ -129,6 +137,8 @@ def search(token: str, term: str, flt: str) -> list:
             data = json.load(r)
         batch = data.get("itemSummaries", [])
         items.extend(batch)
+        if stop_before and batch and (batch[-1].get("itemCreationDate") or "") < stop_before:
+            break  # newest-first results are now older than the window
         if len(batch) < limit or offset + limit >= data.get("total", 0):
             break
         offset += limit
@@ -186,16 +196,18 @@ def money(obj) -> float | None:
         return None
 
 
-def simplify(it: dict, term: str) -> dict:
+def simplify(it: dict, term: str, kind: str) -> dict:
     seller = it.get("seller", {})
     bid = money(it.get("currentBidPrice")) or money(it.get("price"))
     return {
+        "listing_type": kind,          # "auction" or "best_offer"
         "item_id": it.get("itemId"),
         "matched": term,
         "title": it.get("title"),
         "current_bid": bid,
         "bid_count": it.get("bidCount"),
         "ends_utc": it.get("itemEndDate"),
+        "listed_utc": it.get("itemCreationDate"),
         "seller": seller.get("username"),
         "seller_feedback_pct": seller.get("feedbackPercentage"),
         "seller_feedback_score": seller.get("feedbackScore"),
@@ -209,19 +221,36 @@ def simplify(it: dict, term: str) -> dict:
 
 
 def write_markdown(rows: list, generated: str) -> None:
+    auctions = [r for r in rows if r["listing_type"] == "auction"]
+    offers = [r for r in rows if r["listing_type"] == "best_offer"]
+    rng = f"${MIN_PRICE}-{MAX_PRICE}" if MAX_PRICE else f"${MIN_PRICE}+"
     lines = [
-        f"# Auctions ending soon ({len(rows)} cards)",
-        f"_Generated {generated} UTC. Min bid ${MIN_PRICE}, ending within {HOURS_AHEAD}h._",
+        f"# Card list: {len(auctions)} auctions, {len(offers)} best offer listings",
+        f"_Generated {generated} UTC. Price {rng}. Auctions ending within {HOURS_AHEAD}h; "
+        f"best offer listings created in the last {NEW_LISTING_HOURS}h._",
         "",
+        "## Auctions ending soon",
         "| Ends (UTC) | Bid | Bids | Title | Seller |",
         "|---|---|---|---|---|",
     ]
-    for r in rows:
+    for r in auctions:
         ends = (r["ends_utc"] or "")[:16].replace("T", " ")
         bid = f"${r['current_bid']:,.2f}" if r["current_bid"] else "?"
         title = (r["title"] or "").replace("|", "/")
         seller = f"{r['seller']} ({r['seller_feedback_pct']}%)"
         lines.append(f"| {ends} | {bid} | {r['bid_count']} | [{title}]({r['url']}) | {seller} |")
+    lines += [
+        "",
+        "## New best offer listings",
+        "| Listed (UTC) | Asking | Title | Seller |",
+        "|---|---|---|---|",
+    ]
+    for r in offers:
+        listed = (r["listed_utc"] or "")[:16].replace("T", " ")
+        ask = f"${r['current_bid']:,.2f}" if r["current_bid"] else "?"
+        title = (r["title"] or "").replace("|", "/")
+        seller = f"{r['seller']} ({r['seller_feedback_pct']}%)"
+        lines.append(f"| {listed} | {ask} | [{title}]({r['url']}) | {seller} |")
     with open("auctions.md", "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
@@ -235,39 +264,54 @@ def main() -> int:
 
     now = datetime.now(timezone.utc)
     token = get_token(cid, secret)
-    flt = build_filter(now)
-
     cutoff = (now + timedelta(hours=HOURS_AHEAD)).strftime("%Y-%m-%dT%H:%M:%S")
-    seen, rows = set(), []
-    for term in SEARCH_TERMS:
-        try:
-            found = search(token, term, flt)
-        except Exception as e:  # keep going if one search fails
-            print(f"Search failed for {term!r}: {e}", file=sys.stderr)
-            continue
-        kept = 0
-        for it in found:
-            iid = it.get("itemId")
-            title = it.get("title", "")
-            ends = (it.get("itemEndDate") or "")[:19]
-            if ends and ends > cutoff:
-                continue  # double-check the end-time window ourselves
-            if iid in seen or excluded(title) or not wanted(title):
-                continue
-            seen.add(iid)
-            rows.append(simplify(it, term))
-            kept += 1
-        print(f"{term}: {len(found)} found, {kept} kept")
+    since = (now - timedelta(hours=NEW_LISTING_HOURS)).strftime("%Y-%m-%dT%H:%M:%S")
+    kinds = ["auction"] + (["best_offer"] if INCLUDE_BEST_OFFER else [])
 
-    rows.sort(key=lambda r: r["ends_utc"] or "")
+    seen, rows = set(), []
+    for kind in kinds:
+        flt = build_filter(now, kind)
+        for term in SEARCH_TERMS:
+            try:
+                if kind == "auction":
+                    found = search(token, term, flt)
+                else:
+                    found = search(token, term, flt, sort="newlyListed", stop_before=since)
+            except Exception as e:  # keep going if one search fails
+                print(f"{kind} search failed for {term!r}: {e}", file=sys.stderr)
+                continue
+            kept = 0
+            for it in found:
+                iid = it.get("itemId")
+                title = it.get("title", "")
+                if kind == "auction":
+                    ends = (it.get("itemEndDate") or "")[:19]
+                    if ends and ends > cutoff:
+                        continue  # double-check the end-time window ourselves
+                else:
+                    listed = (it.get("itemCreationDate") or "")[:19]
+                    if not listed or listed < since:
+                        continue  # only new best offer listings
+                if iid in seen or excluded(title) or not wanted(title):
+                    continue
+                seen.add(iid)
+                rows.append(simplify(it, term, kind))
+                kept += 1
+            print(f"{kind} | {term}: {len(found)} found, {kept} kept")
+
+    rows.sort(key=lambda r: (r["listing_type"] != "auction",
+                             r["ends_utc"] or "" if r["listing_type"] == "auction"
+                             else "~" + (r["listed_utc"] or "")))
     generated = now.strftime("%Y-%m-%d %H:%M")
     with open("auctions.json", "w", encoding="utf-8") as f:
         json.dump({"generated_utc": generated, "count": len(rows), "items": rows},
                   f, indent=1, ensure_ascii=False)
     write_markdown(rows, generated)
-    print(f"Total: {len(rows)} auctions written")
+    n_auc = sum(r["listing_type"] == "auction" for r in rows)
+    print(f"Total: {n_auc} auctions + {len(rows) - n_auc} best offer listings written")
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+
