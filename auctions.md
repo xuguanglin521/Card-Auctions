@@ -1,13 +1,12 @@
-# Card list: 108 auctions, 245 best offer listings
-_Generated 2026-11-13 18:22 UTC. Price $50-1500. Auctions ending within 24h; best offer listings created in the last 24h._
+# Card list: 108 auctions, 247 best offer listings
+_Generated 2026-11-13 18:35 UTC. Price $50-1500. Auctions ending within 24h; best offer listings created in the last 24h._
 
 ## Auctions ending soon
 | Ends (UTC) | Bid | Bids | Title | Seller |
 |---|---|---|---|---|
-| 2026-11-13 18:35 | $109.99 | 0 | [2025-26 Topps Signature Class Cooper Flagg #101 RC Rookie Teal /225](https://www.ebay.com/itm/267835796438?_skw=Cooper+Flagg&hash=item3e5c41ebd6:g:5noAAeSwA49q7h3m) | amtrevino (100.0%) |
 | 2026-11-13 18:59 | $1,300.00 | 0 | [2026 Prizm FIFA World Cup - Lionel Messi Sergio Aguero dual Auto Redemption](https://www.ebay.com/itm/960171377741?_skw=Messi&hash=itemdf8eac844d:g:OcQAAeSwlg5q8MZT) | mtrain17 (100.0%) |
 | 2026-11-13 19:00 | $1,300.00 | 0 | [2026 Prizm FIFA World Cup - Lionel Messi Sergio Aguero dual Auto Redemption](https://www.ebay.com/itm/960171378438?_skw=Messi&hash=itemdf8eac8706:g:OQEAAeSw3slq8Ma~) | mtrain17 (100.0%) |
-| 2026-11-13 19:15 | $208.50 | 40 | [Topps Chrome Cooper Flagg Dallas Mavericks Rookie  /275 Yellow Raywave RC](https://www.ebay.com/itm/227601799520?_skw=Cooper+Flagg&hash=item34fe1fd960:g:ackAAeSw0gxq2BAt) | itsjahboi (98.5%) |
+| 2026-11-13 19:15 | $360.50 | 42 | [Topps Chrome Cooper Flagg Dallas Mavericks Rookie  /275 Yellow Raywave RC](https://www.ebay.com/itm/227601799520?_skw=Cooper+Flagg&hash=item34fe1fd960:g:ackAAeSw0gxq2BAt) | itsjahboi (98.5%) |
 | 2026-11-13 19:35 | $79.00 | 0 | [2025-26 Topps Stadium Club Chrome UEFA Erling Haaland Green/Purple Electric /80](https://www.ebay.com/itm/800885994448?_skw=Haaland&hash=itemba788673d0:g:DTcAAeSwAOhq9L95) | midnightsuncollectibles (100.0%) |
 | 2026-11-13 19:55 | $102.50 | 10 | [2025 Topps Cosmic Chrome Stephen Curry Blue 89/99 PRP-3 Propulsion](https://www.ebay.com/itm/237168083671?_skw=Stephen+Curry&hash=item373851c2d7:g:I6wAAeSw5J9q3pwM) | mandj_tradingcards (99.8%) |
 | 2026-11-13 19:59 | $79.50 | 0 | [Topps Finest 2026 Victor Wembanyama purple xfractor #98 148/150](https://www.ebay.com/itm/920113146341?_skw=Wembanyama&hash=itemd63b0469e5:g:WHQAAeSwZsRq4Bi2) | venzkingcardshop (100.0%) |
@@ -19,12 +18,12 @@ _Generated 2026-11-13 18:22 UTC. Price $50-1500. Auctions ending within 24h; bes
 | 2026-11-13 20:53 | $99.99 | 0 | [LeBron James 2023-24 Panini Prizm Monopoly #PS9 Bronze All-Star /249](https://www.ebay.com/itm/257839221792?_skw=LeBron+James&hash=item3c086a4c20:g:5BoAAeSwcuJq5PWT) | kevinsportscollectibles (100.0%) |
 | 2026-11-13 21:00 | $338.51 | 11 | [2024-25 Prizm Black Victor Wembanyama Red Power /75 #1 Spurs](https://www.ebay.com/itm/860125720376?_skw=Wembanyama&hash=itemc8437cef38:g:ia8AAeSwQuhq71R~) | scicollect (100.0%) |
 | 2026-11-13 21:13 | $1,299.99 | 0 | [2025-25 Topps Chrome Update LeBron James #MT-13 Moments in Time Purple /75 BGS 9](https://www.ebay.com/itm/257839254169?_skw=LeBron+James&hash=item3c086aca99:g:MQMAAeSw~75q7kLK) | italian1182 (99.6%) |
-| 2026-11-13 21:14 | $51.00 | 30 | [2026 Topps Inception Stephen Curry GSW Purple /125 1st On Print🔥](https://www.ebay.com/itm/860119987199?_skw=Stephen+Curry&hash=itemc8432573ff:g:BTwAAeSwQvpq7kKm) | qscards_123 (100.0%) |
+| 2026-11-13 21:14 | $58.89 | 32 | [2026 Topps Inception Stephen Curry GSW Purple /125 1st On Print🔥](https://www.ebay.com/itm/860119987199?_skw=Stephen+Curry&hash=itemc8432573ff:g:BTwAAeSwQvpq7kKm) | qscards_123 (100.0%) |
 | 2026-11-13 21:23 | $750.00 | 0 | [Topps 2024-25 Chrome UEFA Club Competitions Lamine Yamal FSA-LY Auto](https://www.ebay.com/itm/168844095530?_skw=Lamine+Yamal&hash=item274fe4702a:g:b4QAAeSwLCpq7kSo) | mattcan-11 (0.0%) |
 | 2026-11-13 21:48 | $275.00 | 0 | [Cooper Flagg RC Green /99 / 2025-26 Topps Chrome Black / NBA Mavericks](https://www.ebay.com/itm/227601947424?_skw=Cooper+Flagg&hash=item34fe221b20:g:nYIAAeSwt~tqvaf-) | forgottencoastcards (99.6%) |
 | 2026-11-13 21:56 | $100.00 | 0 | [Topps Chrome 2026 Victor Wembanyama #22 Magenta Refractor Serial 274/399](https://www.ebay.com/itm/407345442718?_skw=Wembanyama&hash=item5ed7ae2f9e:g:NMEAAeSw83Rq7kwM) | berrybombscards (100.0%) |
 | 2026-11-13 22:37 | $600.00 | 0 | [2025-26 Topps Finest Cooper Flagg #F-1 RC Rookie First Gold Refractor /50 PSA 9](https://www.ebay.com/itm/366800234952?_skw=Cooper+Flagg&hash=item5566ff69c8:g:0ecAAeSwm9Bq85nJ) | dragoncards73 (100.0%) |
-| 2026-11-13 23:10 | $455.00 | 7 | [2025-26 Topps Chrome Cooper Flagg #251 Mavericks Magenta Refractor /399 RC](https://www.ebay.com/itm/307270472617?_skw=Cooper+Flagg&hash=item478abf53a9:g:c2AAAeSwydhq7kGi) | mad-dogz (100.0%) |
+| 2026-11-13 23:10 | $480.00 | 8 | [2025-26 Topps Chrome Cooper Flagg #251 Mavericks Magenta Refractor /399 RC](https://www.ebay.com/itm/307270472617?_skw=Cooper+Flagg&hash=item478abf53a9:g:c2AAAeSwydhq7kGi) | mad-dogz (100.0%) |
 | 2026-11-13 23:54 | $490.00 | 31 | [Anthony Edwards 2025-26 Topps Pristine Veteran Orange Auto Twolves #PAAE 2/25](https://www.ebay.com/itm/366791365755?_skw=Anthony+Edwards&hash=item556678147b:g:qC0AAeSwGstq7mjC) | cardboardlegendsonline (100.0%) |
 | 2026-11-14 00:01 | $200.00 | 0 | [Topps Pristine Cooper Flagg /150 precisionaries](https://www.ebay.com/itm/820325856009?_skw=Cooper+Flagg&hash=itembeff3b3309:g:DMQAAeSwDtpqtvyH) | cmcharliescards (83.3%) |
 | 2026-11-14 00:12 | $118.50 | 29 | [2026-2027 Topps Flagship Victor Wembanyama Orange/Rainbow 03/25](https://www.ebay.com/itm/940071723273?_skw=Wembanyama&hash=itemdae0a42109:g:unMAAeSw67hq7mre) | amonsterr (100.0%) |
@@ -68,7 +67,7 @@ _Generated 2026-11-13 18:22 UTC. Price $50-1500. Auctions ending within 24h; bes
 | 2026-11-14 02:26 | $56.00 | 10 | [2025-2026 TOPPS CHROME UCC BLUE REFRACTOR #181 ERLING HAALAND 81/150 PSA 10](https://www.ebay.com/itm/117501885328?_skw=Haaland&hash=item1b5ba87b90:g:hgkAAeSwa-Vq6dhi) | psa (99.9%) |
 | 2026-11-14 02:28 | $229.00 | 0 | [Erling Haaland Topps 2023-24 UEFA CC Ultimate Stage Purple /75 (PSA 10)](https://www.ebay.com/itm/860120557649?_skw=Haaland&hash=itemc8432e2851:g:aScAAeSwmRFqyYgM) | fonshop-us (100.0%) |
 | 2026-11-14 02:30 | $350.00 | 0 | [2008 Bowman LeBron James Light Blue #/499 Cleveland #3 Cavs 76ers](https://www.ebay.com/itm/800894743219?_skw=LeBron+James&hash=itemba790bf2b3:g:xrgAAeSwIvJq35g1) | kabad9 (100.0%) |
-| 2026-11-14 02:31 | $150.00 | 12 | [2025 TOPPS SIGNATURE CLASS ALGORITHM ORANGE #AL-21 COOPER FLAGG RC /50 PSA 8](https://www.ebay.com/itm/900068683736?_skw=Cooper+Flagg&hash=itemd190462fd8:g:QYIAAeSwZwBq7NTB) | psa (99.9%) |
+| 2026-11-14 02:31 | $152.50 | 13 | [2025 TOPPS SIGNATURE CLASS ALGORITHM ORANGE #AL-21 COOPER FLAGG RC /50 PSA 8](https://www.ebay.com/itm/900068683736?_skw=Cooper+Flagg&hash=itemd190462fd8:g:QYIAAeSwZwBq7NTB) | psa (99.9%) |
 | 2026-11-14 02:33 | $1,300.00 | 0 | [2024-25 Prizm Deca Luka Doncic Auto Green Shimmer #11/15 SGC 9 Auto 10 PDS-LUK](https://www.ebay.com/itm/800894757794?_skw=Luka+Doncic&hash=itemba790c2ba2:g:Z1wAAeSw729qJLLx) | kabad9 (100.0%) |
 | 2026-11-14 02:34 | $199.99 | 0 | [2025 Topps Now LEBRON JAMES /50 Gold Foil GEM MINT #128 Most Double-Doubles](https://www.ebay.com/itm/820324786987?_skw=LeBron+James&hash=itembeff2ae32b:g:b~8AAeSwkOVqz9nf) | fsc_3359 (99.8%) |
 | 2026-11-14 02:39 | $561.00 | 29 | [2025 TOPPS SIGNATURE CLASS ROOKIE CLASS CHROME AUTO COOPER FLAGG ROOKIE RC PSA 8](https://www.ebay.com/itm/900060739530?_skw=Cooper+Flagg&hash=itemd18fccf7ca:g:myUAAeSw9NBq6U0z) | psa (99.9%) |
@@ -112,11 +111,11 @@ _Generated 2026-11-13 18:22 UTC. Price $50-1500. Auctions ending within 24h; bes
 | 2026-11-14 17:56 | $1,300.00 | 1 | [2025-26 Topps Motif Cooper Flagg Still Life Signatures RC Auto Blue /39 BGS 8.5 ](https://www.ebay.com/itm/920115989953?_skw=Cooper+Flagg&hash=itemd63b2fcdc1:g:kucAAeSwhyZqzRi3) | gilreat66 (100.0%) |
 | 2026-11-14 18:05 | $462.50 | 1 | [NBA Basketball Dallas Mavericks 2026 Topps Chrome Cooper Flagg 151 RC Green 2/99](https://www.ebay.com/itm/168846430211?_skw=Cooper+Flagg&hash=item2750081003:g:mGoAAeSwvoFq06p6) | radbradcards (100.0%) |
 | 2026-11-14 18:19 | $250.00 | 0 | [2024-25 Panini Prizm - Shai Gilgeous-Alexander #113 Blue Prizm /199 PSA 9](https://www.ebay.com/itm/407347293176?_skw=Gilgeous-Alexander&hash=item5ed7ca6bf8:g:hXwAAeSwYW1q72tK) | packaholic_ripper (97.2%) |
+| 2026-11-14 18:33 | $75.00 | 0 | [Topps 2026 Topps Pristine Victor Wembanyama Spurs #79 Green 159/199 Serial](https://www.ebay.com/itm/137911285649?_skw=Wembanyama&hash=item201c273791:g:6FoAAeSwWfNqynYG) | cardpro-fl (100.0%) |
 
 ## New best offer listings
 | Listed (UTC) | Asking | Title | Seller |
 |---|---|---|---|
-| 2026-11-12 18:33 | $249.99 | [2025-26 Topps Chrome Update Series - Clutch City Cooper Flagg #YQ-1 Green /99](https://www.ebay.com/itm/800909030002?_skw=Cooper+Flagg&hash=itemba79e5f272:g:vXkAAeSw78pq9gZe) | biglercards (100.0%) |
 | 2026-11-12 18:40 | $70.00 | [2026-27 Topps Twin Cities Celebration Gold Glitter /50 Anthony Edwards & Randle](https://www.ebay.com/itm/920135918924?_skw=Anthony+Edwards&hash=itemd63c5fe54c:g:aQAAAeSwQXxq9gep) | hotr2025 (100.0%) |
 | 2026-11-12 18:43 | $1,500.00 | [2025-26 Topps Finest Victor Wembanyama Finishers True Gold /50 PSA 9 🔥🔥🔥 MVP](https://www.ebay.com/itm/800909066540?_skw=Wembanyama&hash=itemba79e6812c:g:Xv0AAeSwxylq9gew) | boydcollectibles (100.0%) |
 | 2026-11-12 19:00 | $299.00 | [2026 Topps Anthony Edwards GOLD Stars Of The NBA # /50!!!](https://www.ebay.com/itm/117518004013?_skw=Anthony+Edwards&hash=item1b5c9e6f2d:g:ie4AAeSwLrpq9gvv) | club88cards (100.0%) |
@@ -360,4 +359,7 @@ _Generated 2026-11-13 18:22 UTC. Price $50-1500. Auctions ending within 24h; bes
 | 2026-11-13 18:07 | $69.99 | [Panini 2026 The National Prizm VIP Lamine Yamal Spain No. LY 76/99](https://www.ebay.com/itm/820351235245?_skw=Lamine+Yamal&hash=itembf00be74ad:g:jw4AAeSwWcBq91Eu) | dstcards5 (100.0%) |
 | 2026-11-13 18:16 | $249.99 | [Topps 2026 Pristine Stephen Curry Warriors Impact Frame Parallel IF-10 #42/50](https://www.ebay.com/itm/880113240509?_skw=Stephen+Curry&hash=itemccead649bd:g:oNYAAeSwAI1q91Nt) | thisishowuball (100.0%) |
 | 2026-11-13 18:16 | $79.99 | [Lionel Messi 15/15 White Prizm Argentina 2022 Fansmall](https://www.ebay.com/itm/237181294294?_skw=Messi&hash=item37391b56d6:g:mA0AAeSw1klq91Po) | jonscardstore (100.0%) |
-| 2026-11-13 18:18 | $1,200.00 | [2026-27 Topps Flagship Basketball Steph Curry Gold # 21/50 🔥🏀](https://www.ebay.com/itm/800912779308?_skw=Stephen+Curry&hash=itemba7a1f282c:g:3awAAeSwq0Jq91Qn) | code3collectiblesllc361 (100.0%) |
+| 2026-11-13 18:18 | $1,200.00 | [2026-27 Topps Flagship Basketball Steph Curry Gold # 21/50 🔥🏀](https://www.ebay.com/itm/800912779308?_skw=Stephen+Curry&hash=itemba7a1f282c:g:MuoAAeSwV7Vq91at) | code3collectiblesllc361 (100.0%) |
+| 2026-11-13 18:21 | $80.00 | [Topps 2015-16 Stephen Curry #130 Golden State Warriors Serial #/399](https://www.ebay.com/itm/407360851020?_skw=Stephen+Curry&hash=item5ed8994c4c:g:m3kAAeSwVoZq91TI) | ke-44171 (100.0%) |
+| 2026-11-13 18:25 | $169.00 | [Panini 2026 Prizm FIFA World Cup Lamine Yamal Spain Orange Disco Prizm #70 /299](https://www.ebay.com/itm/880113286529?_skw=Lamine+Yamal&hash=itemccead6fd81:g:0s4AAeSwYkpq91WF) | gigibuch1967 (100.0%) |
+| 2026-11-13 18:33 | $700.00 | [Topps Pristine Impact Frame Cooper Flagg RC IF-1 Dallas Mavericks 19/50](https://www.ebay.com/itm/860141142469?_skw=Cooper+Flagg&hash=itemc8446841c5:g:xFYAAeSwMBdq91eW) | rkba-30 (100.0%) |
