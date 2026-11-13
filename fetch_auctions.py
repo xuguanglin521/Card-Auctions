@@ -36,7 +36,7 @@ SEARCH_TERMS = [
 ]
 
 MIN_PRICE = 50          # current bid must be at least this (USD)
-MAX_PRICE = 1000        # e.g. 500 to cap it; None = no cap
+MAX_PRICE = None        # e.g. 500 to cap it; None = no cap
 HOURS_AHEAD = 24        # only auctions ending within this many hours
 MAX_PER_TERM = 600      # safety cap on results per search term
 ITEM_COUNTRY = "US"     # only items physically located in this country
@@ -56,6 +56,17 @@ KEEP_NUMBERED = True
 KEEP_AUTOS = True
 AUTO_WORDS = ["auto", "autos", "autograph", "autographed", "autographs",
               "signed", "signature", "signatures", "on card auto", "rpa"]
+
+# Only keep cards from these brands (matched in the title).
+# Bowman is a Topps brand; remove "bowman" to exclude it.
+BRANDS = ["topps", "bowman", "upper deck", "ud", "prizm"]
+# "Prizm" is also a parallel name in other Panini sets (Select, Optic, Mosaic...).
+# If a title only matches "prizm", it is dropped when one of these appears.
+OTHER_PANINI = ["select", "optic", "mosaic", "donruss", "chronicles", "obsidian",
+                "hoops", "contenders", "certified", "crown royale", "revolution",
+                "spectra", "recon", "flux", "court kings", "immaculate",
+                "national treasures", "flawless", "noir", "one and one",
+                "one & one", "photogenic", "silhouette", "threads", "kaleidoscope"]
 
 # ---------------------------------------------------------------------------
 
@@ -84,7 +95,7 @@ def get_token(client_id: str, client_secret: str) -> str:
 
 def build_filter(now: datetime) -> str:
     end = now + timedelta(hours=HOURS_AHEAD)
-    fmt = "%Y-%m-%dT%H:%M:%S.000Z"
+    fmt = "%Y-%m-%dT%H:%M:%SZ"
     price = f"[{MIN_PRICE}..{MAX_PRICE}]" if MAX_PRICE else f"[{MIN_PRICE}]"
     parts = [
         "buyingOptions:{AUCTION}",
@@ -150,7 +161,19 @@ def is_auto(title: str) -> bool:
     return any(f" {w} " in words for w in AUTO_WORDS)
 
 
+def brand_ok(title: str) -> bool:
+    words = " " + re.sub(r"[^a-z0-9&]+", " ", title.lower()) + " "
+    hits = [b for b in BRANDS if f" {b} " in words]
+    if not hits:
+        return False
+    if hits == ["prizm"] and any(f" {o} " in words for o in OTHER_PANINI):
+        return False
+    return True
+
+
 def wanted(title: str) -> bool:
+    if not brand_ok(title):
+        return False
     if not (KEEP_NUMBERED or KEEP_AUTOS):
         return True
     return (KEEP_NUMBERED and is_numbered(title)) or (KEEP_AUTOS and is_auto(title))
@@ -214,6 +237,7 @@ def main() -> int:
     token = get_token(cid, secret)
     flt = build_filter(now)
 
+    cutoff = (now + timedelta(hours=HOURS_AHEAD)).strftime("%Y-%m-%dT%H:%M:%S")
     seen, rows = set(), []
     for term in SEARCH_TERMS:
         try:
@@ -225,6 +249,9 @@ def main() -> int:
         for it in found:
             iid = it.get("itemId")
             title = it.get("title", "")
+            ends = (it.get("itemEndDate") or "")[:19]
+            if ends and ends > cutoff:
+                continue  # double-check the end-time window ourselves
             if iid in seen or excluded(title) or not wanted(title):
                 continue
             seen.add(iid)
@@ -244,4 +271,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-
