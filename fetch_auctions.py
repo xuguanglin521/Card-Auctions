@@ -28,13 +28,13 @@ from datetime import datetime, timedelta, timezone
 
 # One search per entry. Use the spelling sellers use in titles.
 SEARCH_TERMS = [
-    "Messi",
-    "Manchester United",
-    "Stephen Curry",
-    "LeBron James",
-    "Luka Doncic",
-    "Cooper Flagg",
+    # basketball
+    "Cooper Flagg", "Wembanyama", "Stephen Curry", "LeBron James",
+    "Luka Doncic", "Gilgeous-Alexander", "Anthony Edwards",
+    # soccer
+    "Messi", "Lamine Yamal", "Cristiano Ronaldo", "Haaland",
 ]
+
 
 MIN_PRICE = 50          # price / current bid must be at least this (USD)
 MAX_PRICE = 1500        # and at most this; None = no cap
