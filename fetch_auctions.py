@@ -15,6 +15,7 @@ Uses only the Python standard library, nothing to install.
 import base64
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -35,8 +36,8 @@ SEARCH_TERMS = [
 ]
 
 MIN_PRICE = 50          # current bid must be at least this (USD)
-MAX_PRICE = None        # e.g. 500 to cap it; None = no cap
-HOURS_AHEAD = 36        # only auctions ending within this many hours
+MAX_PRICE = 1000        # e.g. 500 to cap it; None = no cap
+HOURS_AHEAD = 24        # only auctions ending within this many hours
 MAX_PER_TERM = 600      # safety cap on results per search term
 ITEM_COUNTRY = "US"     # only items physically located in this country
 
@@ -48,6 +49,13 @@ EXCLUDE_WORDS = [
     "reprint", "rp", "custom", "digital", "lot of", "you pick", "u pick",
     "pick your", "facsimile", "proxy", "break", "mystery", "repack",
 ]
+
+# Keep only cards that are numbered (/99, /25, 1/1 ...) OR autographed.
+# Set either to False to turn that rule off; both False = keep everything.
+KEEP_NUMBERED = True
+KEEP_AUTOS = True
+AUTO_WORDS = ["auto", "autos", "autograph", "autographed", "autographs",
+              "signed", "signature", "signatures", "on card auto", "rpa"]
 
 # ---------------------------------------------------------------------------
 
@@ -124,6 +132,30 @@ def excluded(title: str) -> bool:
     return False
 
 
+SERIAL_RE = re.compile(r"(?<![\w/])(?:#\s?)?(\d{1,3})?\s?/\s?(\d{1,4})(?![\w/])")
+
+
+def is_numbered(title: str) -> bool:
+    for m in SERIAL_RE.finditer(title):
+        num, den = m.group(1), int(m.group(2))
+        if num and len(num) == 2 and len(m.group(2)) == 2 and int(num) + 1 == den:
+            continue  # looks like a season, e.g. 24/25
+        if den >= 1 and (num is None or int(num) <= den):
+            return True
+    return False
+
+
+def is_auto(title: str) -> bool:
+    words = " " + re.sub(r"[^a-z0-9]+", " ", title.lower()) + " "
+    return any(f" {w} " in words for w in AUTO_WORDS)
+
+
+def wanted(title: str) -> bool:
+    if not (KEEP_NUMBERED or KEEP_AUTOS):
+        return True
+    return (KEEP_NUMBERED and is_numbered(title)) or (KEEP_AUTOS and is_auto(title))
+
+
 def money(obj) -> float | None:
     try:
         return float(obj["value"])
@@ -144,6 +176,8 @@ def simplify(it: dict, term: str) -> dict:
         "seller": seller.get("username"),
         "seller_feedback_pct": seller.get("feedbackPercentage"),
         "seller_feedback_score": seller.get("feedbackScore"),
+        "numbered": is_numbered(it.get("title") or ""),
+        "auto": is_auto(it.get("title") or ""),
         "condition": it.get("condition"),
         "shipping": money((it.get("shippingOptions") or [{}])[0].get("shippingCost")),
         "url": it.get("itemWebUrl"),
@@ -190,7 +224,8 @@ def main() -> int:
         kept = 0
         for it in found:
             iid = it.get("itemId")
-            if iid in seen or excluded(it.get("title", "")):
+            title = it.get("title", "")
+            if iid in seen or excluded(title) or not wanted(title):
                 continue
             seen.add(iid)
             rows.append(simplify(it, term))
@@ -209,3 +244,4 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
